@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./index.css";
 import { FaTrash } from "react-icons/fa";
 import { FaEdit } from "react-icons/fa";
@@ -14,6 +14,16 @@ export const TodoList: React.FC = () => {
   const [todoItem, setTodoItem] = useState<string>("");
   const [todoEditing, setTodoEditing] = useState<string>("");
   const [editingText, setEditingText] = useState<string>("");
+
+  useEffect(() => {
+    console.log(todoEditing,'todoEditing222');
+
+    console.log("todosss55555",todos);
+
+    let titleTodoEdit: any = todos.filter(e => e.id == todoEditing)
+    setEditingText(titleTodoEdit[0]?.text)
+     console.log(titleTodoEdit,'ttttttttttttttt')
+  }, [todoEditing]);
 
   const addItemsToList = () => {
     const newTodo: item = {
@@ -48,6 +58,11 @@ export const TodoList: React.FC = () => {
       }
       return todo;
     });
+
+   
+
+    console.log("todosss",todos);
+    console.log(todos)
     setTodos(updatTodos);
     setTodoEditing("");
     setEditingText("");
@@ -111,6 +126,7 @@ export const TodoList: React.FC = () => {
               <button
                 className="rounded-full bg-amber-400 flex text-white border-amber-400 p-4 cursor-pointer text-xl m-1"
                 onClick={() => {
+                  console.log(todo.id,'ccccccccccccccccccccc')
                   setTodoEditing(todo.id);
                 }}
               >
