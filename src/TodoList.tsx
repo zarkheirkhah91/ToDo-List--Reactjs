@@ -16,13 +16,8 @@ export const TodoList: React.FC = () => {
   const [editingText, setEditingText] = useState<string>("");
 
   useEffect(() => {
-    console.log(todoEditing,'todoEditing222');
-
-    console.log("todosss55555",todos);
-
     let titleTodoEdit: any = todos.filter(e => e.id == todoEditing)
     setEditingText(titleTodoEdit[0]?.text)
-     console.log(titleTodoEdit,'ttttttttttttttt')
   }, [todoEditing]);
 
   const addItemsToList = () => {
@@ -59,10 +54,6 @@ export const TodoList: React.FC = () => {
       return todo;
     });
 
-   
-
-    console.log("todosss",todos);
-    console.log(todos)
     setTodos(updatTodos);
     setTodoEditing("");
     setEditingText("");
@@ -80,11 +71,11 @@ export const TodoList: React.FC = () => {
           type="text"
           placeholder="Enter Your Task..."
           className="p-4 min-w-80 text-3xl border-solid border-2 border-white bg-white rounded-l-lg w-2/5"
-          onChange={(e) => {
-            setTodoItem(e.target.value);
+          onChange={(event) => {
+            setTodoItem(event.target.value);
           }}
-          onKeyDown={(e) => {
-            if (e.key === "Enter" && todoItem?.length >= 1) addItemsToList();
+          onKeyDown={(event) => {
+            if (event.key === "Enter" && todoItem?.length >= 1) addItemsToList();
           }}
           value={todoItem}
         />
@@ -126,7 +117,6 @@ export const TodoList: React.FC = () => {
               <button
                 className="rounded-full bg-amber-400 flex text-white border-amber-400 p-4 cursor-pointer text-xl m-1"
                 onClick={() => {
-                  console.log(todo.id,'ccccccccccccccccccccc')
                   setTodoEditing(todo.id);
                 }}
               >
